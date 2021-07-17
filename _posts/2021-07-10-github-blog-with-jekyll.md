@@ -2,8 +2,11 @@
 layout: post
 title:  "GitHub blog with Jekyll"
 date:   2021-07-10 10:47:16 +0800
-categories: GitHub
+categories: GitHub Jekyll
 ---
+
+為了寫一篇新的 blog 開始研究支援 Markdown 格式的方案，最後就選了 GitHub + Jekyll 的方式，順便把過程記錄下來。
+
 ## Step
 
 1. New Repository  
@@ -32,6 +35,3 @@ bundle add webrick
 ## Reference
 > [Jekyll](https://jekyllrb.com/)  
 > [RubyGems](https://rubygems.org/)
-> []()
-> []()
-> []()
