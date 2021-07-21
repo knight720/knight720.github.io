@@ -27,6 +27,8 @@ url: "https://knight720.github.io" # the base hostname & protocol for your site,
 twitter_username: ninku720
 github_username: knight720
 
+google_analytics: 280207178
+
 # Build settings
 theme: minima
 plugins:
