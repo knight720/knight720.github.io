@@ -58,3 +58,6 @@ minima:
 header_pages:
   - categories.md
   - about.md
+
+disqus:
+    shortname: knight720
