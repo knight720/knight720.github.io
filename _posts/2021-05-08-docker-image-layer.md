@@ -22,13 +22,13 @@ RUN apt-get update && apt-get install -y \
 
 > Kubernetes 建置與執行 : 邁向基礎設施的未來, 2/e
 
-Alpine_01_Base
+alpine_01_base
 ```dockerfile
 FROM alpine
 WORKDIR /app
 ```
  
-Alpine_02_NoPipe
+alpine_02_nopipe
 ```dockerfile
 FROM alpine
 WORKDIR /app
@@ -36,15 +36,16 @@ RUN fallocate -l 100M big_file.dat
 RUN rm ./big_file.dat
 ```
 
-Alpine_03_Pipe
+alpine_03_pipe
 ```dockerfile
 FROM alpine
 WORKDIR /app
 RUN fallocate -l 100M big_file.dat | rm ./big_file.dat
 ```
 
-可以明顯看出 Alpine_01_Base 的 image 大小為 000MB，而 Alpine_02_NoPipe 即使把 100MB 的刪除掉之後 image 仍然還有 000MB，Alpine_03_Pipe 則是使用 pipe 的方式刪除檔案 image 大小只有 000MB。由此可知下層 layer 的內容並不會因為被上層 layer 刪除而真的是放原本占用的空間。  
-[圖]
+可以明顯看出 alpine_01_base 的 image 大小為 5.6MB 與 alpine 相同，而 alpine_02_nopipe 即使把 100MB 的刪除掉之後 image 仍然還有 110MB，alpine_03_pipe 則是使用 pipe 的方式刪除檔案 image 大小只有 5.6MB。由此可知下層 layer 的內容並不會因為被上層 layer 刪除而真的是放原本占用的空間。  
+
+![image](/assets/img/2021-05-08-a.jpg)  
 
 書中另外還有提到關於安全性的部分**"不能將密碼放進容器裡，不只是最後一層，在印象檔的任一層都不行。任何擁有工具的人都可以存取，攻擊者可以直接建立一個包含密碼資料層的映像檔。"**‧以 .Net 的開發習慣來說設定檔都是會跟著一起佈署的，所以打包 docker image 時也不例外，不過這麼做其實是有安全性的疑慮的，docker image 的原則應該是不包含設定值的，而是執行的當下才將參數注入到 container 當中運行。
 
@@ -74,7 +75,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 接著使用 multi-stage 來驗證一下，是不是能有效避免 image 遇上大小及安全性的問提，內容如下。
 
-Alpine_04_MultiStage
+alpine_04_multistage
 ```dockerfile
 FROM alpine AS build
 WORKDIR /code
@@ -87,6 +88,8 @@ WORKDIR /app
 COPY --from=build /code ./
 ```
 
-[圖]
+![image](/assets/img/2021-05-08-b.jpg)  
 
-由此可知我們在 build 的階段刪除不必要的資料或設定檔，可以減少 image 的大小及解決安全性的問題，透過這一連串的試驗，讓我對 Dockerfile 的撰寫有了更深一層的認識。
+alpine_04_multistage 的 image 大小為 16.1MB，由此可知我們在 build 的階段刪除不必要的資料或設定檔，可以減少 image 的大小及解決安全性的問題，透過這一連串的試驗，讓我對 Dockerfile 的撰寫有了更深一層的認識。
+
+> [Dockerfile](https://github.com/knight720/TestDocker/tree/master/010_DeleteFile)
