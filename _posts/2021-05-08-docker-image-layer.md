@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "我不知道的 docker image layer"
-date:   2021-05-08 12:00:00 +0800
+date:   2021-05-08
 tags: [docker]
 categories: docker
 ---

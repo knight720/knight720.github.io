@@ -55,7 +55,7 @@ plugins:
 #   - vendor/ruby/
 
 minima:
-  date_format: "%Y-%m-%d %H:%M"
+  date_format: "%Y-%m-%d"
 
 header_pages:
   - categories.md
