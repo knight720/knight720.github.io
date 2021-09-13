@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "nameof"
+title:  "C# nameof 背後怎麼運作"
 date:   2021-09-10
 tags: [C#]
 categories: C#
@@ -14,7 +14,8 @@ categories: C#
 
 
 - C# 程式碼
-```c#
+
+``` 
 using System;
 
 namespace ConsoleApp1
@@ -46,7 +47,8 @@ Summer
 ```
 
 - 反組譯 DLL
-```c#
+
+```
 // ConsoleApp1.Program
 using System;
 
@@ -63,7 +65,8 @@ nameof 在編譯後會轉換成字串，因此執行時期不在需要額外的�
 - 同場加映
 
 - C# 程式碼
-```c#
+
+```
 using System;
 
 namespace ConsoleApp2_const
@@ -98,7 +101,8 @@ namespace ConsoleApp2_const
 ```
 
 - 反組譯 DLL
-```c#
+
+```
 // ConsoleApp2_const.Program
 using System;
 
