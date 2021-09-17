@@ -6,7 +6,7 @@ tags: [docker,wsl]
 categories: docker
 ---
 
-緣起於 Docker Desktop 要開始收費，順便降低 Windows 系統資源的使用量，所以開啟了把 docker 放到 WSL 內執行的念頭，不過每次開機都還要另外啟動 docker 服務有點麻煩，那就讓他預設啟動吧...
+緣起於 Docker Desktop 要開始收費，順便降低 Windows 系統資源的使用量，所以有了把 docker 放到 WSL 內執行的念頭，不過每次開機都還要另外啟動 docker 服務有點麻煩，那就讓他預設啟動吧...
 
 - 編輯 /etc/sudoers  
 ```bash
